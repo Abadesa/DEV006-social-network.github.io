@@ -17,12 +17,12 @@ function home(navigateTo) {
   footer.classList.add('footerBienvenida');
   line.classList.add('lineaBienvenida');
 
-  button.textContent = 'login';
+  button.textContent = 'Log in';
   button.addEventListener('click', () => {
     navigateTo('/login');
   });
 
-  button2.textContent = 'sign up';
+  button2.textContent = 'Register';
   button2.addEventListener('click', () => {
     navigateTo('/signup');
   });
@@ -31,7 +31,7 @@ function home(navigateTo) {
   logo.src = './images/logo-learlink-vertical.png';
   title.textContent = 'Welcome to LearnLink';
   paragraph.textContent = 'Find thousands of courses close to you';
-  footer.textContent = 'Please review our privacy policy';
+  footer.innerHTML = 'Please review our <span class="subrayado"> privacy policy</span>';
 
   section.append(logo, title, paragraph, button, line, button2, footer);
   return section;

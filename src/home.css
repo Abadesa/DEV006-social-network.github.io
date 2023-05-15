@@ -52,12 +52,11 @@ button {
     justify-content: center;
     align-items: center;
     height: 45px;
-    width: 300px;
-    width: 50%;
+    width: 75%;
     display: flex;
-    margin-top: 70px;
-    margin-bottom: 50px;
-    margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    margin-left: 50px;
     font-size: 20px;
 }
 
@@ -66,17 +65,17 @@ button {
     justify-content: center;
     align-items: center;
     height: 45px;
-    width: 300px;
-    width: 50%;
+    width: 75%;
     display: flex;
-    margin-top: 50px;
-    margin-left: 100px;
+    margin-top: 40px;
+    margin-left: 50px;
     font-size: 20px;
 }
 
 .lineaBienvenida {
-    width: 190px;
-    margin-left: 100px;
+    width: 70%;
+    margin: auto auto;
+    margin-bottom: 15px;
 }
 
 /*Footer de bienvenida*/
