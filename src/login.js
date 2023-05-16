@@ -1,3 +1,5 @@
+import logInGoogle from './firebase';
+
 // file login finished
 function login(navigateTo) {
   const section = document.createElement('section');
@@ -25,6 +27,11 @@ function login(navigateTo) {
   lineLogIn.classList.add('lineaLogIn');
   googleLogoLogIn.classList.add('googleicon');
   googleLogIn.classList.add('googleLogIn');
+  googleLogIn.addEventListener('click', async () => {
+    const user = await logInGoogle();
+    // eslint-disable-next-line no-console, no-alert, prefer-template
+    alert('hola ' + user.displayName);
+  });
   footerLogIn.classList.add('footerLogIn');
 
   inputPass.setAttribute('type', 'password');
@@ -39,6 +46,9 @@ function login(navigateTo) {
   googleLogIn.textContent = 'Log in with Google';
   forgotPasswordLogIn.textContent = 'Did you forget your password?';
   footerLogIn.innerHTML = 'You do not have an account? <span class="subrayado"> Register</span>';
+  footerLogIn.addEventListener('click', () => {
+    navigateTo('/signup');
+  });
 
   buttonReturn.textContent = 'Return';
   buttonReturn.addEventListener('click', () => {

@@ -45,9 +45,15 @@ function signUp(navigateTo) {
   // titleSignUp.textContent = 'Sign Up to LearnLink';
   textSignUp.textContent = 'Find thousands of courses!';
   buttonSignUp.textContent = 'Register';
+  buttonSignUp.addEventListener('click', () => {
+    navigateTo('/confirmation');
+  });
   googleLogoSignUp.src = './images/Google.png';
   googleSignUp.textContent = 'Register with Google';
   footerSignUp.innerHTML = 'Do you already have an account? <span class="subrayado">Log in</span>';
+  footerSignUp.addEventListener('click', () => {
+    navigateTo('/login');
+  });
 
   buttonReturnSignUp.textContent = 'Return';
   buttonReturnSignUp.addEventListener('click', () => {

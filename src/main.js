@@ -6,6 +6,8 @@ import home from './home.js';
 import login from './login.js';
 import signup from './signup.js';
 import error from './error.js';
+import confirmation from './confirmation.js';
+import interests from './interests.js';
 
 myFunction();
 
@@ -14,6 +16,8 @@ const routes = [
   { path: '/login', component: login },
   { path: '/error', component: error },
   { path: '/signup', component: signup },
+  { path: '/confirmation', component: confirmation },
+  { path: '/interests', component: interests },
 ];
 
 const defaultRoute = '/';

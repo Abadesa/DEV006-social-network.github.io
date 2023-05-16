@@ -1,6 +1,9 @@
 // Import the functions you need from the SDKs you need
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { initializeApp } from 'firebase/app';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -16,4 +19,17 @@ const firebaseConfig = {
   measurementId: 'G-5Z7B8PV9VL',
 };
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+export default async function logInGoogle() {
+  try {
+    const provider = new GoogleAuthProvider();
+    const result = await firebase.auth().signInWithPopup(provider);
+    // eslint-disable-next-line no-console
+    console.log(result);
+    return result.user;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error.message);
+    throw error;
+  }
+}

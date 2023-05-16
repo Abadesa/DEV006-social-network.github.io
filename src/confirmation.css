@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('./font/static/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    background-color: #002738;
+    margin: 0;
+}
+
+button {
+    background-color: #0087C1;
+    border-color: #0087C1;
+    border-radius: 10px;
+    color: white;
+    box-shadow: none;
+    font-size: 14px;
+}
+
+/*Imagen de correo*/
+.logoConfirmation {
+    height: 35%;
+    width: 35%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 150px;
+    max-width: 100%;
+    height: auto;
+}
+
+/*Textos de Confirmation*/
+.textConfirmation1{
+    margin-top: 70px;
+    text-align: center;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.textConfirmation2{
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+/*Botones Confirmation */
+.buttonConfirmation{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 75%;
+    display: flex;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    margin-left: 50px;
+    font-size: 20px;
+    font-family: 'Raleway';
+    border-radius: 10px;
+    border-color: #0087C1;
+}
+
+/*Linea*/
+.lineConfirmation {
+    width: 70%;
+    margin: auto auto;
+    margin-bottom: 15px;
+}
+
+/*Footer de Confirmation*/
+.footerConfirmation {
+    background-color: #0087C1;
+    color: white;
+    font-size: 12px;
+    font-family: 'Raleway';
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+}
