@@ -8,7 +8,7 @@ function interests(navigateTo) {
   const buttonCity = document.createElement('button');
   const lineInterests = document.createElement('hr');
   const formInterests = document.createElement('form');
-  const container = document.getElementById('container');
+  const container = document.createElement('div');
   const inputInterests1 = document.createElement('input');
   const inputInterests2 = document.createElement('input');
   const inputInterests3 = document.createElement('input');
@@ -125,16 +125,13 @@ function interests(navigateTo) {
 
   // Agregar el label y el input al contenedor
   // eslint-disable-next-line max-len
-  container.append(labelInterests1, labelInterests2, labelInterests3, labelInterests4, labelInterests5, labelInterests6, labelInterests7, labelInterests8, labelInterests9, labelInterests10, labelInterests11, labelInterests12, inputInterests1, inputInterests2, inputInterests3, inputInterests4, inputInterests5, inputInterests6, inputInterests7, inputInterests8, inputInterests9, inputInterests10, inputInterests11, inputInterests12);
-  // eslint-disable-next-line max-len
-  // container.append();
+  container.append(inputInterests1, labelInterests1, inputInterests2, labelInterests2, inputInterests3, labelInterests3, inputInterests4, labelInterests4, inputInterests5, labelInterests5, inputInterests6, labelInterests6, inputInterests7, labelInterests7, inputInterests8, labelInterests8, inputInterests9, labelInterests9, inputInterests10, labelInterests10, inputInterests11, labelInterests11, inputInterests12, labelInterests12);
 
   // eslint-disable-next-line max-len
   formInterests.append(buttonCity, buttonCountry, lineInterests, container, buttonInterests);
 
   // eslint-disable-next-line max-len
   sectionInterests.append(logoInterests, textInterests1, textInterests2, formInterests, footerInterests);
-
   return sectionInterests;
 }
 
