@@ -8,6 +8,7 @@ function interests(navigateTo) {
   const buttonCity = document.createElement('button');
   const lineInterests = document.createElement('hr');
   const formInterests = document.createElement('form');
+  const container = document.getElementById('container');
   const inputInterests1 = document.createElement('input');
   const inputInterests2 = document.createElement('input');
   const inputInterests3 = document.createElement('input');
@@ -20,6 +21,18 @@ function interests(navigateTo) {
   const inputInterests10 = document.createElement('input');
   const inputInterests11 = document.createElement('input');
   const inputInterests12 = document.createElement('input');
+  const labelInterests1 = document.createElement('label');
+  const labelInterests2 = document.createElement('label');
+  const labelInterests3 = document.createElement('label');
+  const labelInterests4 = document.createElement('label');
+  const labelInterests5 = document.createElement('label');
+  const labelInterests6 = document.createElement('label');
+  const labelInterests7 = document.createElement('label');
+  const labelInterests8 = document.createElement('label');
+  const labelInterests9 = document.createElement('label');
+  const labelInterests10 = document.createElement('label');
+  const labelInterests11 = document.createElement('label');
+  const labelInterests12 = document.createElement('label');
   const buttonInterests = document.createElement('button');
   const footerInterests = document.createElement('footer');
 
@@ -59,31 +72,66 @@ function interests(navigateTo) {
   inputInterests11.setAttribute('type', 'radio');
   inputInterests12.setAttribute('type', 'radio');
 
+  inputInterests1.setAttribute('id', 'inputInterests1');
+  inputInterests2.setAttribute('id', 'inputInterests2');
+  inputInterests3.setAttribute('id', 'inputInterests3');
+  inputInterests4.setAttribute('id', 'inputInterests4');
+  inputInterests5.setAttribute('id', 'inputInterests5');
+  inputInterests6.setAttribute('id', 'inputInterests6');
+  inputInterests7.setAttribute('id', 'inputInterests7');
+  inputInterests8.setAttribute('id', 'inputInterests8');
+  inputInterests9.setAttribute('id', 'inputInterests9');
+  inputInterests10.setAttribute('id', 'inputInterests10');
+  inputInterests11.setAttribute('id', 'inputInterests11');
+  inputInterests12.setAttribute('id', 'inputInterests12');
+
+  // Labels
+  labelInterests1.setAttribute('for', 'inputInterests1');
+  labelInterests2.setAttribute('for', 'inputInterests2');
+  labelInterests3.setAttribute('for', 'inputInterests3');
+  labelInterests4.setAttribute('for', 'inputInterests4');
+  labelInterests5.setAttribute('for', 'inputInterests5');
+  labelInterests6.setAttribute('for', 'inputInterests6');
+  labelInterests7.setAttribute('for', 'inputInterests7');
+  labelInterests8.setAttribute('for', 'inputInterests8');
+  labelInterests9.setAttribute('for', 'inputInterests9');
+  labelInterests10.setAttribute('for', 'inputInterests10');
+  labelInterests11.setAttribute('for', 'inputInterests11');
+  labelInterests12.setAttribute('for', 'inputInterests12');
+
+  // Textos
   logoInterests.src = './images/cadenas-learnlink.png';
   textInterests1.textContent = 'Choose 4 topics of your interest';
   textInterests2.textContent = 'This will help us personalize your experience';
   buttonCountry.textContent = 'Country';
   buttonCity.textContent = 'City';
-  inputInterests1.textContent = 'Art';
-  inputInterests2.textContent = 'Recipes';
-  inputInterests3.textContent = 'Construction';
-  inputInterests4.textContent = 'JavaScript';
-  inputInterests5.textContent = 'Ceramics';
-  inputInterests6.textContent = 'Motherhood';
-  inputInterests7.textContent = 'Languages';
-  inputInterests8.textContent = 'Education';
-  inputInterests9.textContent = 'Gardening';
-  inputInterests10.textContent = 'Design';
-  inputInterests11.textContent = 'Hospitality';
-  inputInterests12.textContent = 'Technology';
+  labelInterests1.textContent = 'Art';
+  labelInterests2.textContent = 'Recipes';
+  labelInterests3.textContent = 'Construction';
+  labelInterests4.textContent = 'JavaScript';
+  labelInterests5.textContent = 'Ceramics';
+  labelInterests6.textContent = 'Motherhood';
+  labelInterests7.textContent = 'Languages';
+  labelInterests8.textContent = 'Education';
+  labelInterests9.textContent = 'Gardening';
+  labelInterests10.textContent = 'Design';
+  labelInterests11.textContent = 'Hospitality';
+  labelInterests12.textContent = 'Technology';
   buttonInterests.textContent = 'Next';
   buttonInterests.addEventListener('click', () => {
     navigateTo('/feed');
   });
   footerInterests.innerHTML = 'App created by Alicia Riquelme, Andrea Gatell and Dorianys Aponte';
 
+  // Agregar el label y el input al contenedor
   // eslint-disable-next-line max-len
-  formInterests.append(buttonCity, buttonCountry, lineInterests, inputInterests1, inputInterests2, inputInterests3, inputInterests4, inputInterests5, inputInterests6, inputInterests7, inputInterests8, inputInterests9, inputInterests10, inputInterests11, inputInterests12, buttonInterests);
+  container.append(labelInterests1, labelInterests2, labelInterests3, labelInterests4, labelInterests5, labelInterests6, labelInterests7, labelInterests8, labelInterests9, labelInterests10, labelInterests11, labelInterests12, inputInterests1, inputInterests2, inputInterests3, inputInterests4, inputInterests5, inputInterests6, inputInterests7, inputInterests8, inputInterests9, inputInterests10, inputInterests11, inputInterests12);
+  // eslint-disable-next-line max-len
+  // container.append();
+
+  // eslint-disable-next-line max-len
+  formInterests.append(buttonCity, buttonCountry, lineInterests, container, buttonInterests);
+
   // eslint-disable-next-line max-len
   sectionInterests.append(logoInterests, textInterests1, textInterests2, formInterests, footerInterests);
 

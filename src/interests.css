@@ -95,6 +95,12 @@
 }
 
 /*Inputs*/
+input{
+ display: inline-block;
+ width: 45%;;
+ margin: 5px 0;
+ color: white;
+}
 
 /*Botón siguiente*/
 .buttonInterests {
