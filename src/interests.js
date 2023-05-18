@@ -8,7 +8,9 @@ function interests(navigateTo) {
   const buttonCity = document.createElement('button');
   const lineInterests = document.createElement('hr');
   const formInterests = document.createElement('form');
+  const containerMayor = document.createElement('div');
   const container = document.createElement('div');
+  const container2 = document.createElement('div');
   const inputInterests1 = document.createElement('input');
   const inputInterests2 = document.createElement('input');
   const inputInterests3 = document.createElement('input');
@@ -44,9 +46,13 @@ function interests(navigateTo) {
   buttonCity.classList.add('buttonCity');
   lineInterests.classList.add('lineInterests');
   formInterests.classList.add('formInterests');
+  containerMayor.classList.add('containerMayor');
+  container.classList.add('containerInterests');
+  container2.classList.add('containerInterests2');
   inputInterests1.classList.add('inputInterests1');
   inputInterests2.classList.add('inputInterests2');
   inputInterests3.classList.add('inputInterests3');
+  labelInterests3.classList.add('labelInterests3');
   inputInterests4.classList.add('inputInterests4');
   inputInterests5.classList.add('inputInterests5');
   inputInterests6.classList.add('inputInterests6');
@@ -124,11 +130,13 @@ function interests(navigateTo) {
   footerInterests.innerHTML = 'App created by Alicia Riquelme, Andrea Gatell and Dorianys Aponte';
 
   // Agregar el label y el input al contenedor
+  containerMayor.append(container, container2);
   // eslint-disable-next-line max-len
-  container.append(inputInterests1, labelInterests1, inputInterests2, labelInterests2, inputInterests3, labelInterests3, inputInterests4, labelInterests4, inputInterests5, labelInterests5, inputInterests6, labelInterests6, inputInterests7, labelInterests7, inputInterests8, labelInterests8, inputInterests9, labelInterests9, inputInterests10, labelInterests10, inputInterests11, labelInterests11, inputInterests12, labelInterests12);
-
+  container.append(inputInterests1, labelInterests1, inputInterests2, labelInterests2, inputInterests3, labelInterests3, inputInterests4, labelInterests4, inputInterests5, labelInterests5, inputInterests6, labelInterests6);
   // eslint-disable-next-line max-len
-  formInterests.append(buttonCity, buttonCountry, lineInterests, container, buttonInterests);
+  container2.append(inputInterests7, labelInterests7, inputInterests8, labelInterests8, inputInterests9, labelInterests9, inputInterests10, labelInterests10, inputInterests11, labelInterests11, inputInterests12, labelInterests12);
+  // eslint-disable-next-line max-len
+  formInterests.append(buttonCity, buttonCountry, lineInterests, containerMayor, buttonInterests);
 
   // eslint-disable-next-line max-len
   sectionInterests.append(logoInterests, textInterests1, textInterests2, formInterests, footerInterests);

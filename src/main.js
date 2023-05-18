@@ -8,6 +8,8 @@ import signup from './signup.js';
 import error from './error.js';
 import confirmation from './confirmation.js';
 import interests from './interests.js';
+import feed from './feed.js';
+import profile from './profile.js';
 
 myFunction();
 
@@ -18,6 +20,8 @@ const routes = [
   { path: '/signup', component: signup },
   { path: '/confirmation', component: confirmation },
   { path: '/interests', component: interests },
+  { path: '/feed', component: feed },
+  { path: '/profile', component: profile },
 ];
 
 const defaultRoute = '/';

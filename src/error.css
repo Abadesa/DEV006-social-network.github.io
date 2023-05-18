@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('./font/static/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    background-color: #002738;
+    margin: 0;
+}
+.titleError{
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Raleway';
+}
