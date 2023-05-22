@@ -3,6 +3,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
+// eslint-disable-next-line import/no-unresolved
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -33,3 +35,5 @@ export default async function logInGoogle() {
     throw error;
   }
 }
+
+export const auth = getAuth(app);

@@ -1,3 +1,8 @@
+/* eslint-disable import/no-unresolved */
+import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
+import { async } from 'regenerator-runtime';
+import { auth } from './firebase.js';
+
 // file signup finished
 function signUp(navigateTo) {
   const sectionSignUp = document.createElement('section');
@@ -35,7 +40,7 @@ function signUp(navigateTo) {
   inputPassSignUp.setAttribute('type', 'password');
   inputPassRepeat.setAttribute('type', 'password');
 
-  inputEmailSignUp.placeholder = ' Write email';
+  inputEmailSignUp.placeholder = ' Email';
   fullNameSignUp.placeholder = ' Full name';
   userNameSignUp.placeholder = ' Username';
   inputPassSignUp.placeholder = ' Password';
@@ -45,6 +50,16 @@ function signUp(navigateTo) {
   // titleSignUp.textContent = 'Sign Up to LearnLink';
   textSignUp.textContent = 'Find thousands of courses!';
   buttonSignUp.textContent = 'Register';
+
+  // function applySubmitListener(sectionSignUp) {
+  // const form = sectionSignUp.querySelector('form');
+  // form.addEventListener('submit', (event) => {
+  // event.preventDefault();
+  // const email = form.inputEmailSignUp.value;
+  // const password = form.inputPassSignUp.value;
+  // authController.createUserWithEmailAndPassword(email, password);
+  // });
+
   buttonSignUp.addEventListener('click', () => {
     navigateTo('/confirmation');
   });
@@ -67,5 +82,4 @@ function signUp(navigateTo) {
 
   return sectionSignUp;
 }
-
 export default signUp;
