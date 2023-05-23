@@ -7,11 +7,12 @@
 
 /*Header*/
 .header{
-
+    position: fixed;
 }
+
 .logoFeed{
-    height: 20%;
-    width: 20%;
+    height: 10%;
+    width: 10%;
     margin-left: 35px;
     margin-top: 20px;
 }
@@ -23,7 +24,6 @@
 }
 
 /*Footer*/
-
 .footerFeed{
     background-color: #0087C1;
     display: flex;
@@ -34,6 +34,8 @@
     height: 70px;
     width: 100%;
 }
+
+/*Navegador de la app*/
 .navFeed{
     display: flex;
     justify-content:space-around;
@@ -54,11 +56,6 @@
     width: 50px;
     margin: 10px;
     background-color: #0087C1;
-}
-
-.circleFeed{
-    border-radius: 50%;
-    background-color:black;
 }
 
 .postFeed{
