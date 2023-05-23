@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // file intersts finished
 function feed(navigateTo) {
   const sectionFeed = document.createElement('section');
@@ -37,7 +38,8 @@ function feed(navigateTo) {
   profileFeed.src = './images/perfil.png';
 
   headerFeed.append(logoFeed);
-  footerFeed.append(homeFeed, searchFeed, circleFeed, postFeed, chatFeed, profileFeed);
+  footerFeed.append(navFeed);
+  navFeed.append(homeFeed, searchFeed, circleFeed, postFeed, chatFeed, profileFeed);
 
   // eslint-disable-next-line max-len
   sectionFeed.append(headerFeed, lineFeed, containerPost, containerFriends, footerFeed);

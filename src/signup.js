@@ -1,7 +1,6 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
-import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
-import { async } from 'regenerator-runtime';
-import { auth } from './firebase.js';
+import { signUpWithEmail, createUser } from './firebase.js';
 
 // file signup finished
 function signUp(navigateTo) {
@@ -39,6 +38,10 @@ function signUp(navigateTo) {
 
   inputPassSignUp.setAttribute('type', 'password');
   inputPassRepeat.setAttribute('type', 'password');
+  inputEmailSignUp.setAttribute('name', 'inputEmailSignUp');
+  inputPassSignUp.setAttribute('name', 'inputPassSignUp');
+  fullNameSignUp.setAttribute('name', 'fullNameSignUp');
+  userNameSignUp.setAttribute('name', 'userNameSignUp');
 
   inputEmailSignUp.placeholder = ' Email';
   fullNameSignUp.placeholder = ' Full name';
@@ -47,22 +50,27 @@ function signUp(navigateTo) {
   inputPassRepeat.placeholder = ' Repeat password';
 
   logoSignUp.src = './images/logo-learnlin-color.png';
-  // titleSignUp.textContent = 'Sign Up to LearnLink';
   textSignUp.textContent = 'Find thousands of courses!';
   buttonSignUp.textContent = 'Register';
 
-  // function applySubmitListener(sectionSignUp) {
-  // const form = sectionSignUp.querySelector('form');
-  // form.addEventListener('submit', (event) => {
-  // event.preventDefault();
-  // const email = form.inputEmailSignUp.value;
-  // const password = form.inputPassSignUp.value;
-  // authController.createUserWithEmailAndPassword(email, password);
-  // });
-
-  buttonSignUp.addEventListener('click', () => {
+  buttonSignUp.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const form = document.querySelector('form');
+    const email = form.inputEmailSignUp.value;
+    const password = form.inputPassSignUp.value;
+    console.log(email, password);
+    const userAuth = await signUpWithEmail(email, password);
+    console.log(userAuth);
+    const userDataBase = {
+      email,
+      name: form.fullNameSignUp.value,
+      username: form.userNameSignUp.value,
+    };
+    console.log(userDataBase);
+    createUser(userDataBase);
     navigateTo('/confirmation');
   });
+
   googleLogoSignUp.src = './images/Google.png';
   googleSignUp.textContent = 'Register with Google';
   footerSignUp.innerHTML = 'Do you already have an account? <span class="subrayado">Log in</span>';

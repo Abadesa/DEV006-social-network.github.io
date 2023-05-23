@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
 // Import the functions you need from the SDKs you need
 // eslint-disable-next-line import/no-extraneous-dependencies
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 import { GoogleAuthProvider } from 'firebase/auth';
 // eslint-disable-next-line import/no-unresolved
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
@@ -22,7 +24,9 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
-export default async function logInGoogle() {
+const db = firebase.firestore();
+
+export async function logInGoogle() {
   try {
     const provider = new GoogleAuthProvider();
     const result = await firebase.auth().signInWithPopup(provider);
@@ -36,4 +40,27 @@ export default async function logInGoogle() {
   }
 }
 
-export const auth = getAuth(app);
+export async function signUpWithEmail(email, password) {
+  try {
+    const userCreated = await firebase.auth().createUserWithEmailAndPassword(email, password);
+    return userCreated.user;
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
+}
+
+export async function createUser(user) {
+  try {
+    const collectionUser = db.collection('users');
+    collectionUser.add(user).then(() => {
+      console.log('usuario creado');
+    });
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
+}
+
+const auth = getAuth(app);
+export default auth;
