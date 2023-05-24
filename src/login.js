@@ -1,5 +1,4 @@
-/* eslint-disable import/no-named-as-default */
-import logInGoogle from './firebase';
+import { logInGoogle } from './firebase';
 
 // file login finished
 function login(navigateTo) {
