@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
-import { signUpWithEmail, createUser } from './firebase.js';
+import { signUpWithEmail, createUser } from '../lib/firebase.js';
 
 // file signup finished
 function signUp(navigateTo) {
@@ -49,7 +49,7 @@ function signUp(navigateTo) {
   inputPassSignUp.placeholder = ' Password';
   inputPassRepeat.placeholder = ' Repeat password';
 
-  logoSignUp.src = './images/logo-learnlin-color.png';
+  logoSignUp.src = '../components/images/logo-learnlin-color.png';
   textSignUp.textContent = 'Find thousands of courses!';
   buttonSignUp.textContent = 'Register';
 
@@ -71,7 +71,7 @@ function signUp(navigateTo) {
     navigateTo('/confirmation');
   });
 
-  googleLogoSignUp.src = './images/Google.png';
+  googleLogoSignUp.src = '../components/images/Google.png';
   googleSignUp.textContent = 'Register with Google';
   footerSignUp.innerHTML = 'Do you already have an account? <span class="subrayado">Log in</span>';
   footerSignUp.addEventListener('click', () => {

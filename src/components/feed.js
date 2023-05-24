@@ -30,12 +30,12 @@ function feed(navigateTo) {
   chatFeed.classList.add('chatFeed');
   profileFeed.classList.add('profileFeed');
 
-  logoFeed.src = './images/cadenas-learnlink.png';
-  homeFeed.src = './images/hogar.png';
-  searchFeed.src = './images/buscar.png';
-  postFeed.src = './images/mas.png';
-  chatFeed.src = './images/mensajero.png';
-  profileFeed.src = './images/perfil.png';
+  logoFeed.src = '../components/images/cadenas-learnlink.png';
+  homeFeed.src = '../components/images/hogar.png';
+  searchFeed.src = '../components/images/buscar.png';
+  postFeed.src = '../components/images/mas.png';
+  chatFeed.src = '../components/images/mensajero.png';
+  profileFeed.src = '../components/images/perfil.png';
 
   headerFeed.append(logoFeed);
   footerFeed.append(navFeed);

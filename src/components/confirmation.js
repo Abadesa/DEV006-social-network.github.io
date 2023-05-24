@@ -16,7 +16,7 @@ function confirmation(navigateTo) {
   lineConfirmation.classList.add('lineConfirmation');
   footerConfirmation.classList.add('footerConfirmation');
 
-  logoConfirmation.src = './images/email.png';
+  logoConfirmation.src = '../components/images/email.png';
   textConfirmation1.textContent = 'We sent you an email to verify your data';
   textConfirmation2.textContent = "Check your inbox, if you didn't receive an email, please check your spam folder";
   buttonConfirmation.textContent = 'Next';

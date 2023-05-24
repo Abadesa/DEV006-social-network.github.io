@@ -4,9 +4,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { GoogleAuthProvider } from 'firebase/auth';
-// eslint-disable-next-line import/no-unresolved
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
+import { GoogleAuthProvider, signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,6 +36,12 @@ export async function logInGoogle() {
     console.log(error.message);
     throw error;
   }
+}
+
+export function logInWithEmail(email, password) {
+  const auth = getAuth();
+  const promesa = signInWithEmailAndPassword(auth, email, password);
+  return promesa;
 }
 
 export async function signUpWithEmail(email, password) {

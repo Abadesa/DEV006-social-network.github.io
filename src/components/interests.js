@@ -106,7 +106,7 @@ function interests(navigateTo) {
   labelInterests12.setAttribute('for', 'inputInterests12');
 
   // Textos
-  logoInterests.src = './images/cadenas-learnlink.png';
+  logoInterests.src = '../components/images/cadenas-learnlink.png';
   textInterests1.textContent = 'Choose 4 topics of your interest';
   textInterests2.textContent = 'This will help us personalize your experience';
   buttonCountry.textContent = 'Country';

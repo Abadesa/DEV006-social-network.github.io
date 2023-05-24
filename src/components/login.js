@@ -1,4 +1,4 @@
-import { logInGoogle } from './firebase';
+import { logInGoogle, logInWithEmail } from '../lib/firebase';
 
 // file login finished
 function login(navigateTo) {
@@ -21,6 +21,19 @@ function login(navigateTo) {
   inputEmail.classList.add('inputEmailLogIn');
   inputPass.classList.add('inputPassLogIn');
   buttonLogin.classList.add('buttonLogIn');
+  buttonLogin.addEventListener('click', (event) => {
+    event.preventDefault();
+    const email = inputEmail.value;
+    const password = inputPass.value;
+    const promesa = logInWithEmail(email, password);
+    promesa.then((userCredential) => {
+      console.log(userCredential, 'promesa resueltaaaa');
+      navigateTo('/feed');
+    }).catch((error) => {
+      console.log(error, 'esta maaaaal');
+      navigateTo('/error');
+    });
+  });
   buttonReturn.classList.add('returnLogIn');
   forgotPasswordLogIn.classList.add('forgotPassLogIn');
   logoLogIn.classList.add('logoLogIn');
@@ -39,10 +52,10 @@ function login(navigateTo) {
   inputEmail.placeholder = ' Email';
   inputPass.placeholder = ' Password';
 
-  logoLogIn.src = './images/logo-learlink-vertical.png';
+  logoLogIn.src = '../components/images/logo-learlink-vertical.png';
   titleLogIn.textContent = 'Welcome to LearnLink';
   buttonLogin.textContent = 'Log in';
-  googleLogoLogIn.src = './images/Google.png';
+  googleLogoLogIn.src = '../components/images/Google.png';
   googleLogIn.textContent = 'Log in with Google';
   forgotPasswordLogIn.textContent = 'Did you forget your password?';
   footerLogIn.innerHTML = 'You do not have an account? <span class="subrayado"> Register</span>';

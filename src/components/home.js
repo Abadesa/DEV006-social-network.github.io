@@ -7,7 +7,7 @@ function home(navigateTo) {
   const button = document.createElement('button');
   const line = document.createElement('hr');
   const button2 = document.createElement('button');
-  const footer = document.createElement('p');
+  const footer = document.createElement('footer');
 
   logo.classList.add('logoVertical');
   title.classList.add('tituloBienvenida');
@@ -28,10 +28,10 @@ function home(navigateTo) {
   });
 
   // eslint-disable-next-line no-useless-escape
-  logo.src = './images/logo-learlink-vertical.png';
+  logo.src = './components/images/logo-learlink-vertical.png';
   title.textContent = 'Welcome to LearnLink';
   paragraph.textContent = 'Find thousands of courses close to you';
-  footer.innerHTML = 'Please review our <span class="subrayado"> privacy policy</span>';
+  footer.innerHTML = '<p>Please review our <span class="subrayado"> privacy policy</span></p>';
 
   section.append(logo, title, paragraph, button, line, button2, footer);
   return section;

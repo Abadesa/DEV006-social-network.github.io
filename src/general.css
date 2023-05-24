@@ -8,10 +8,14 @@
 * {
     background-color: #002738;
     margin: 0;
-}
-.titleError{
-    position: relative;
-    text-align: center;
-    font-size: 20px;
     font-family: 'Raleway';
+}
+
+button {
+    background-color: #0087C1;
+    border-color: #0087C1;
+    border-radius: 10px;
+    color: white;
+    box-shadow: none;
+    font-size: 14px;
 }

@@ -2,14 +2,14 @@
 import { myFunction } from './lib/index.js';
 
 // file main.js finished
-import home from './home.js';
-import login from './login.js';
-import signup from './signup.js';
-import error from './error.js';
-import confirmation from './confirmation.js';
-import interests from './interests.js';
-import feed from './feed.js';
-import profile from './profile.js';
+import home from './components/home.js';
+import login from './components/login.js';
+import signup from './components/signup.js';
+import error from './components/error.js';
+import confirmation from './components/confirmation.js';
+import interests from './components/interests.js';
+import feed from './components/feed.js';
+import profile from './components/profile.js';
 
 myFunction();
 
