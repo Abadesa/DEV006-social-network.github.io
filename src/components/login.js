@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { logInGoogle, logInWithEmail } from '../lib/firebase';
 
 // file login finished
@@ -41,9 +42,11 @@ function login(navigateTo) {
   googleLogoLogIn.classList.add('googleicon');
   googleLogIn.classList.add('googleLogIn');
   googleLogIn.addEventListener('click', async () => {
-    const user = await logInGoogle();
-    // eslint-disable-next-line no-console, no-alert, prefer-template
-    alert('hola ' + user.displayName);
+    const user = await logInGoogle()
+      .then((user1) => {
+        console.log(user1);
+      });
+    console.log(user);
   });
   footerLogIn.classList.add('footerLogIn');
 

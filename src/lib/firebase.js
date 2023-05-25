@@ -1,10 +1,15 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 // Import the functions you need from the SDKs you need
 // eslint-disable-next-line import/no-extraneous-dependencies
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import { GoogleAuthProvider, signInWithEmailAndPassword, getAuth } from 'firebase/auth';
+// import firebase from 'firebase/compat/app';
+import { initializeApp } from 'firebase/app';
+import {
+  GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword,
+} from 'firebase/auth';
+import {
+  getFirestore, collection, addDoc, setDoc,
+} from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,32 +26,25 @@ const firebaseConfig = {
   measurementId: 'G-5Z7B8PV9VL',
 };
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+// const db = firebase.firestore();
+const db = getFirestore(app);
+const auth = getAuth(app);
 
 export async function logInGoogle() {
-  try {
-    const provider = new GoogleAuthProvider();
-    const result = await firebase.auth().signInWithPopup(provider);
-    // eslint-disable-next-line no-console
-    console.log(result);
-    return result.user;
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error.message);
-    throw error;
-  }
+  // try {
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider);
 }
 
 export function logInWithEmail(email, password) {
-  const auth = getAuth();
   const promesa = signInWithEmailAndPassword(auth, email, password);
   return promesa;
 }
 
 export async function signUpWithEmail(email, password) {
   try {
-    const userCreated = await firebase.auth().createUserWithEmailAndPassword(email, password);
+    const userCreated = await createUserWithEmailAndPassword(auth, email, password);
     return userCreated.user;
   } catch (error) {
     console.log(error.message);
@@ -56,15 +54,12 @@ export async function signUpWithEmail(email, password) {
 
 export async function createUser(user) {
   try {
-    const collectionUser = db.collection('users');
-    collectionUser.add(user).then(() => {
-      console.log('usuario creado');
-    });
-  } catch (error) {
-    console.log(error.message);
-    throw error;
+    const docRef = await addDoc(collection(db, 'users'), user);
+
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
   }
 }
 
-const auth = getAuth(app);
 export default auth;
