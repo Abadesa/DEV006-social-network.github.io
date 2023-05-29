@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
-import { signUpWithEmail, createUser } from '../lib/firebase.js';
+import { logInGoogle, signUpWithEmail, createUser } from '../lib/firebase.js';
 
 // file signup finished
 function signUp(navigateTo) {
@@ -34,6 +34,14 @@ function signUp(navigateTo) {
   lineSignUp.classList.add('lineSignUp');
   googleLogoSignUp.classList.add('googleLogoSignUp');
   googleSignUp.classList.add('googleSignUp');
+  googleSignUp.addEventListener('click', async () => {
+    const userSu = await logInGoogle()
+      .then((user2) => {
+        console.log(user2);
+      });
+    console.log(userSu);
+    navigateTo('/confirmation');
+  });
   footerSignUp.classList.add('footerSignUp');
 
   inputPassSignUp.setAttribute('type', 'password');

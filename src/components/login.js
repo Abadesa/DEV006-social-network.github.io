@@ -47,6 +47,7 @@ function login(navigateTo) {
         console.log(user1);
       });
     console.log(user);
+    navigateTo('/feed');
   });
   footerLogIn.classList.add('footerLogIn');
 

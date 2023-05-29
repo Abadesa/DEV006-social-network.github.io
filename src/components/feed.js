@@ -1,5 +1,14 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 // file intersts finished
+let contador = 0;
+
+// function incrementarContador() {
+// contador++;
+// likeCounter.textContent = contador;
+// }
+
 function feed(navigateTo) {
   const sectionFeed = document.createElement('section');
   // Header//
@@ -8,10 +17,12 @@ function feed(navigateTo) {
   const lineFeed = document.createElement('hr');
   // Posts
   const containerPost = document.createElement('div');
+  const likeFeed = document.createElement('input');
+  const likeCounter = document.createElement('span');
   const formFeed = document.createElement('form');
-  const labelTitleP = document.createElement('label');
+  const pictureDiv = document.createElement('div');
+  const profilePic = document.createElement('img');
   const inputTitleP = document.createElement('input');
-  const labelCourseInfo = document.createElement('label');
   const textCourseInfo = document.createElement('textarea');
   const btnPublish = document.createElement('button');
   // Friends
@@ -26,15 +37,18 @@ function feed(navigateTo) {
   const chatFeed = document.createElement('img');
   const profileFeed = document.createElement('img');
 
+  // Header
   headerFeed.classList.add('headerFeed');
   logoFeed.classList.add('logoFeed');
   lineFeed.classList.add('lineFeed');
   // Posts
   containerPost.classList.add('containerPost');
+  likeFeed.classList.add('likeFeed');
+  likeCounter.classList.add('likeCounter');
   formFeed.classList.add('formFeed');
-  labelTitleP.classList.add('labelTitleP');
+  pictureDiv.classList.add('pictureDiv');
+  profilePic.classList.add('profilePic');
   inputTitleP.classList.add('inputTitleP');
-  labelCourseInfo.classList.add('labelCourseInfo');
   textCourseInfo.classList.add('textCourseInfo');
   btnPublish.classList.add('btnPublish');
   // Friends
@@ -54,32 +68,60 @@ function feed(navigateTo) {
   postFeed.src = '../components/images/mas.png';
   chatFeed.src = '../components/images/mensajero.png';
   profileFeed.src = '../components/images/perfil.png';
+  profilePic.src = '../components/images/profile-pic.png';
+  likeFeed.src = '../components/images/corazon.png';
+  likeCounter.textContent = '0';
   inputTitleP.placeholder = ' What is the title of your course?';
   textCourseInfo.placeholder = ' Describe your course...';
   btnPublish.textContent = 'Post';
-  labelTitleP.textContent = 'Title';
-  labelCourseInfo.textContent = 'Description';
 
-  labelTitleP.setAttribute('id', 'labelTitleP');
-  labelTitleP.setAttribute('for', 'labelTitleP');
-  labelCourseInfo.setAttribute('id', 'labelCourseInfo');
-  labelCourseInfo.setAttribute('for', 'labelCourseInfo');
+  likeFeed.setAttribute('type', 'image');
+  likeFeed.setAttribute('id', 'likeFeed');
+  likeFeed.setAttribute('for', 'likeFeed');
+  likeCounter.setAttribute('id', 'likeCounter');
+  likeCounter.setAttribute('for', 'likeCounter');
+  profilePic.setAttribute('id', 'profilePic');
+  profilePic.setAttribute('name', 'profilePic');
+  btnPublish.setAttribute('id', 'btnPublish');
+  btnPublish.setAttribute('for', 'btnPublish');
 
   inputTitleP.setAttribute('type', 'text');
   btnPublish.setAttribute('type', 'submit');
   inputTitleP.setAttribute('name', 'inputTitleP');
   textCourseInfo.setAttribute('name', 'textCourseInfo');
 
+  likeFeed.addEventListener('click', (event) => {
+    event.preventDefault();
+    function incrementarContador() {
+      contador++;
+      likeCounter.textContent = contador;
+    }
+    function decrementarContador() {
+      contador--;
+      likeCounter.textContent = contador;
+    }
+    // Cambiar la imagen
+    if (likeFeed.src.endsWith('corazon.png')) {
+      likeFeed.src = '../components/images/corazon2.png';
+      incrementarContador();
+    } else {
+      likeFeed.src = '../components/images/corazon.png';
+      decrementarContador();
+    }
+  });
+
   headerFeed.append(logoFeed);
 
   containerPost.append(formFeed);
-  formFeed.append(labelTitleP, inputTitleP, labelCourseInfo, textCourseInfo, btnPublish);
+  pictureDiv.append(profilePic);
+  formFeed.append(pictureDiv, inputTitleP, textCourseInfo, btnPublish, likeFeed, likeCounter);
 
   footerFeed.append(navFeed);
   navFeed.append(homeFeed, searchFeed, circleFeed, postFeed, chatFeed, profileFeed);
 
   // eslint-disable-next-line max-len
   sectionFeed.append(headerFeed, lineFeed, containerPost, containerFriends, footerFeed);
+
   return sectionFeed;
 }
 
