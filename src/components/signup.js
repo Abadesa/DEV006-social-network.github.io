@@ -19,6 +19,7 @@ function signUp(navigateTo) {
   const lineSignUp = document.createElement('hr');
   const googleLogoSignUp = document.createElement('img');
   const googleSignUp = document.createElement('p');
+  // const warningsSignUp = document.createElement('p');
   const footerSignUp = document.createElement('footer');
 
   logoSignUp.classList.add('logoSignUp');
@@ -66,6 +67,23 @@ function signUp(navigateTo) {
     const form = document.querySelector('form');
     const email = form.inputEmailSignUp.value;
     const password = form.inputPassSignUp.value;
+    /* let warnings = '';
+    let entrar = false;
+    const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    warningsSignUp.innerHTML = '';
+    if (!regexEmail.test(inputEmailSignUp.value)) {
+      warnings += 'This is not a valid email <br>';
+      entrar = true;
+    }
+    if (inputPassSignUp.value.length < 8) {
+      warnings += 'Password must contain at least 8 characters <br>';
+      entrar = true;
+    }
+    if (entrar) {
+      warningsSignUp.innerHTML = warnings;
+    } else {
+      navigateTo('/confirmation');
+    } */
     console.log(email, password);
     const userAuth = await signUpWithEmail(email, password);
     console.log(userAuth);

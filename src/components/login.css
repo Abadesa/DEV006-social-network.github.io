@@ -4,7 +4,7 @@
     width: 50%;
     display: block;
     margin: 0 auto;
-    margin-top: 70px;
+    margin-top: 30px;
     max-width: 100%;
     height: auto;
 }
@@ -121,6 +121,15 @@
     justify-content: center;
     text-align: center;
     font-family: 'Raleway';
+}
+
+/*Warnings*/
+.warningsLogIn{
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    color: white;
+    padding-top: 20px;
 }
 
 /*Footer de Log In*/
