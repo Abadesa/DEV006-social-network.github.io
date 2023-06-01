@@ -27,7 +27,7 @@ const routes = [
 const defaultRoute = '/';
 const root = document.getElementById('root');
 
-function navigateTo(hash) {
+async function navigateTo(hash) {
   const route = routes.find((routeFound) => routeFound.path === hash);
 
   if (route && route.component) {
@@ -40,7 +40,7 @@ function navigateTo(hash) {
     if (root.firstChild) {
       root.removeChild(root.firstChild);
     }
-    root.appendChild(route.component(navigateTo));
+    root.appendChild(await route.component(navigateTo));
   } else {
     navigateTo('/error');
   }

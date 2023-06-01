@@ -6,9 +6,7 @@ import { initializeApp } from 'firebase/app';
 import {
   GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import {
-  getFirestore, collection, addDoc,
-} from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -60,5 +58,47 @@ export async function createUser(user) {
     console.error('Error adding document: ', e);
   }
 }
+
+export async function addPostForUser(post) {
+  try {
+    console.log(post);
+    const postsRef = collection(db, 'posts');
+    const newPostRef = await addDoc(postsRef, post);
+    console.log('Nuevo post agregado con ID:', newPostRef.id);
+  } catch (error) {
+    console.error('Error al agregar el nuevo post:', error);
+    throw error;
+  }
+}
+
+export async function getAllPosts() {
+  try {
+    const postsRef = collection(db, 'posts');
+    const querySnapshot = await getDocs(postsRef);
+    const userPosts = [];
+    querySnapshot.forEach((doc) => {
+      const postData = doc.data();
+      userPosts.push({ id: doc.id, ...postData });
+    });
+    return userPosts;
+  } catch (error) {
+    console.error('Error al obtener los posts del usuario:', error);
+    throw error;
+  }
+}
+
+export async function updatePostLikes(postId, likesNumer) {
+  try {
+    const postRef = doc(db, 'posts', postId);
+    console.log("referencia al post que te gusta");
+    console.log(postRef);
+    await updateDoc(postRef, { likes: likesNumer });
+    console.log('Campo "likes" del post actualizado correctamente');
+  } catch (error) {
+    console.error('Error al actualizar el campo "likes" del post:', error);
+    throw error;
+  }
+}
+
 
 export default auth;
