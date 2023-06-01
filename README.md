@@ -337,17 +337,17 @@ observar la valoración de las publicaciones.
 
 Se utilizó Figma para la elaboración de los prototipos.
 
-[label](src/components/images/prototipo%20de%20baja)
+![Prototipo de baja](src/components/images/prototipo%20de%20baja)
 
 ### 5.2 Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
 
-[label](src/components/images/prototipo%20de%20alta%201)
+![Prototipo de alta 1](src/components/images/prototipo%20de%20alta%201)
 
-[label](src/components/images/prototipo%20de%20alta%202)
+![Prototipo de alta 2](src/components/images/prototipo%20de%20alta%202)
 
-[label](src/components/images/prototipo%20de%20alta%203)
+![Prototipo de alta 3](src/components/images/prototipo%20de%20alta%203)
 
-[label](src/components/images/prototipo%20de%20alta%204)
+![Prototipo de alta 4](src/components/images/prototipo%20de%20alta%204)
 
 ### 5.3 Vistas
 
