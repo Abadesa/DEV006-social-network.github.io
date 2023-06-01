@@ -4,6 +4,7 @@ import { logInGoogle, signUpWithEmail, createUser } from '../lib/firebase.js';
 
 // file signup finished
 function signUp(navigateTo) {
+  // Constantes
   const sectionSignUp = document.createElement('section');
   const logoSignUp = document.createElement('img');
   const textSignUp = document.createElement('p');
@@ -22,6 +23,7 @@ function signUp(navigateTo) {
   const warningsSignUp = document.createElement('p');
   const footerSignUp = document.createElement('footer');
 
+  // Clases
   logoSignUp.classList.add('logoSignUp');
   textSignUp.classList.add('textSignUp');
   titleSignUp.classList.add('titleSignUp');
@@ -46,6 +48,7 @@ function signUp(navigateTo) {
   warningsSignUp.classList.add('warningsSignUp');
   footerSignUp.classList.add('footerSignUp');
 
+  // Tipos y nombres
   inputPassSignUp.setAttribute('type', 'password');
   inputPassRepeat.setAttribute('type', 'password');
   inputEmailSignUp.setAttribute('name', 'inputEmailSignUp');
@@ -53,16 +56,19 @@ function signUp(navigateTo) {
   fullNameSignUp.setAttribute('name', 'fullNameSignUp');
   userNameSignUp.setAttribute('name', 'userNameSignUp');
 
+  // Placeholders
   inputEmailSignUp.placeholder = ' Email';
   fullNameSignUp.placeholder = ' Full name';
   userNameSignUp.placeholder = ' Username';
   inputPassSignUp.placeholder = ' Password';
   inputPassRepeat.placeholder = ' Repeat password';
 
+  // Contenidos
   logoSignUp.src = '../components/images/logo-learnlin-color.png';
   textSignUp.textContent = 'Find thousands of courses!';
   buttonSignUp.textContent = 'Register';
 
+  // Función de registro
   buttonSignUp.addEventListener('click', async (event) => {
     event.preventDefault();
     const form = document.querySelector('form');
