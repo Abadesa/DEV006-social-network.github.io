@@ -7,7 +7,7 @@
 * [3. Objetivos de aprendizaje alcanzados](#3-objetivos-de-aprendizaje-alcanzados)
 * [4. Consideraciones generales](#4-consideraciones-generales)
 * [5. Historias de Usuario](#5-historias-de-usuario)
-* [7. Entrega](#7-entrega)
+* [6. Entrega](#6-entrega)
 
 ## 1. Preámbulo
 
