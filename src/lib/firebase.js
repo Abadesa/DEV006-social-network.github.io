@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 // Import the functions you need from the SDKs you need
 // eslint-disable-next-line import/no-extraneous-dependencies
-// import firebase from 'firebase/compat/app';
 import { initializeApp } from 'firebase/app';
 import {
   GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword,

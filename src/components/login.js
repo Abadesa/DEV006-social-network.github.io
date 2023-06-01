@@ -15,10 +15,23 @@ function login(navigateTo) {
   const lineLogIn = document.createElement('hr');
   const googleLogoLogIn = document.createElement('img');
   const googleLogIn = document.createElement('p');
+  const warningsLogIn = document.createElement('p');
   const footerLogIn = document.createElement('footer');
+
+  warningsLogIn.setAttribute('id', 'warningsLogIn');
+  warningsLogIn.setAttribute('for', 'warningsLogIn');
+  form.setAttribute('id', 'form');
+  form.setAttribute('for', 'form');
+  inputEmail.setAttribute('id', 'inputEmail');
+  inputEmail.setAttribute('for', 'inputEmail');
+  inputEmail.setAttribute('type', 'email');
+  inputPass.setAttribute('id', 'inputPass');
+  inputPass.setAttribute('for', 'inputPass');
+  inputPass.setAttribute('type', 'password');
 
   titleLogIn.classList.add('titleLogIn');
   form.classList.add('formLogIn');
+
   inputEmail.classList.add('inputEmailLogIn');
   inputPass.classList.add('inputPassLogIn');
   buttonLogin.classList.add('buttonLogIn');
@@ -26,15 +39,33 @@ function login(navigateTo) {
     event.preventDefault();
     const email = inputEmail.value;
     const password = inputPass.value;
+    let warnings = '';
+    let entrar = false;
+    const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    warningsLogIn.innerHTML = '';
+    if (!regexEmail.test(inputEmail.value)) {
+      warnings += 'This is not a valid email <br>';
+      entrar = true;
+    }
+    if (inputPass.value.length < 8) {
+      warnings += 'Password must contain at least 8 characters <br>';
+      entrar = true;
+    }
+    if (entrar) {
+      warningsLogIn.innerHTML = warnings;
+    } else {
+      navigateTo('/feed');
+    }
+    console.log('funciona');
     const promesa = logInWithEmail(email, password);
     promesa.then((userCredential) => {
       console.log(userCredential, 'promesa resueltaaaa');
       navigateTo('/feed');
     }).catch((error) => {
       console.log(error, 'esta maaaaal');
-      navigateTo('/error');
     });
   });
+
   buttonReturn.classList.add('returnLogIn');
   forgotPasswordLogIn.classList.add('forgotPassLogIn');
   logoLogIn.classList.add('logoLogIn');
@@ -49,9 +80,8 @@ function login(navigateTo) {
     localStorage.setItem ("user", JSON.stringify(user.user));
     navigateTo('/feed');
   });
+  warningsLogIn.classList.add('warningsLogIn');
   footerLogIn.classList.add('footerLogIn');
-
-  inputPass.setAttribute('type', 'password');
 
   inputEmail.placeholder = ' Email';
   inputPass.placeholder = ' Password';
@@ -74,7 +104,7 @@ function login(navigateTo) {
 
   form.append(inputEmail, inputPass, buttonLogin);
   // eslint-disable-next-line max-len
-  section.append(logoLogIn, titleLogIn, form, buttonReturn, forgotPasswordLogIn, lineLogIn, googleLogoLogIn, googleLogIn, footerLogIn);
+  section.append(logoLogIn, titleLogIn, form, buttonReturn, forgotPasswordLogIn, lineLogIn, googleLogoLogIn, googleLogIn, warningsLogIn, footerLogIn);
 
   return section;
 }
