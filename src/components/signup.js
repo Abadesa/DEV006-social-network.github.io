@@ -19,7 +19,7 @@ function signUp(navigateTo) {
   const lineSignUp = document.createElement('hr');
   const googleLogoSignUp = document.createElement('img');
   const googleSignUp = document.createElement('p');
-  // const warningsSignUp = document.createElement('p');
+  const warningsSignUp = document.createElement('p');
   const footerSignUp = document.createElement('footer');
 
   logoSignUp.classList.add('logoSignUp');
@@ -43,6 +43,7 @@ function signUp(navigateTo) {
     console.log(userSu);
     navigateTo('/confirmation');
   });
+  warningsSignUp.classList.add('warningsSignUp');
   footerSignUp.classList.add('footerSignUp');
 
   inputPassSignUp.setAttribute('type', 'password');
@@ -67,7 +68,7 @@ function signUp(navigateTo) {
     const form = document.querySelector('form');
     const email = form.inputEmailSignUp.value;
     const password = form.inputPassSignUp.value;
-    /* let warnings = '';
+    let warnings = '';
     let entrar = false;
     const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     warningsSignUp.innerHTML = '';
@@ -82,19 +83,18 @@ function signUp(navigateTo) {
     if (entrar) {
       warningsSignUp.innerHTML = warnings;
     } else {
+      console.log(email, password);
+      const userAuth = await signUpWithEmail(email, password);
+      console.log(userAuth);
+      const userDataBase = {
+        email,
+        name: form.fullNameSignUp.value,
+        username: form.userNameSignUp.value,
+      };
+      console.log(userDataBase);
+      createUser(userDataBase);
       navigateTo('/confirmation');
-    } */
-    console.log(email, password);
-    const userAuth = await signUpWithEmail(email, password);
-    console.log(userAuth);
-    const userDataBase = {
-      email,
-      name: form.fullNameSignUp.value,
-      username: form.userNameSignUp.value,
-    };
-    console.log(userDataBase);
-    createUser(userDataBase);
-    navigateTo('/confirmation');
+    }
   });
 
   googleLogoSignUp.src = '../components/images/Google.png';
@@ -112,7 +112,7 @@ function signUp(navigateTo) {
   // eslint-disable-next-line max-len
   formSignUp.append(inputEmailSignUp, fullNameSignUp, userNameSignUp, inputPassSignUp, inputPassRepeat, buttonSignUp);
   // eslint-disable-next-line max-len
-  sectionSignUp.append(logoSignUp, textSignUp, googleLogoSignUp, googleSignUp, lineSignUp, formSignUp, footerSignUp);
+  sectionSignUp.append(logoSignUp, textSignUp, googleLogoSignUp, googleSignUp, lineSignUp, formSignUp, warningsSignUp, footerSignUp);
 
   return sectionSignUp;
 }

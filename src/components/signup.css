@@ -4,44 +4,19 @@
     width: 70%;
     display: block;
     margin: 0 auto;
-    margin-top: 70px;
+    margin-top: 45px;
     max-width: 100%;
     height: auto;
 }
 
-/*Titulo y texto*/
-/*.titleSignUp{
-    margin-top: 40px;
-    text-align: center;
-    color: white;
-    font-family: 'Raleway';
-}*/
-
 .textSignUp {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
     color: white;
     font-family: 'Raleway';
     font-size: 22px;
 }
-
-/*Botón solitario que nadie quiere
-.buttonReturnSignUp {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    height: 45px;
-    width: 75%;
-    display: flex;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    margin-left: 50px;
-    font-size: 20px;
-    font-family: 'Raleway';
-    border-radius: 10px;
-    border-color: #0087C1;
-}*/
 
 /*Botón Sign Up*/
 .buttonSignUp {
@@ -176,6 +151,16 @@
     font-family: 'Raleway';
 }
 
+/*Warnings*/
+.warningsSignUp{
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    color:coral;
+    padding-top: 15px;
+}
+
+/*Footer*/
 .footerSignUp {
     background-color: #0087C1;
     color: white;
