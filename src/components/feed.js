@@ -1,128 +1,86 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
-// file intersts finished
+import { getAllPosts, updatePostLikes } from '../lib/firebase';
+
 let contador = 0;
 
-// function incrementarContador() {
-// contador++;
-// likeCounter.textContent = contador;
-// }
-
-function feed(navigateTo) {
+async function feed(navigateTo) {
+  const user = JSON.parse(localStorage.getItem("user"));
   const sectionFeed = document.createElement('section');
-  // Header//
-  const headerFeed = document.createElement('header');
-  const logoFeed = document.createElement('img');
-  const lineFeed = document.createElement('hr');
-  // Posts
-  const containerPost = document.createElement('div');
-  const likeFeed = document.createElement('input');
-  const likeCounter = document.createElement('span');
-  const formFeed = document.createElement('form');
-  const pictureDiv = document.createElement('div');
-  const profilePic = document.createElement('img');
-  const inputTitleP = document.createElement('input');
-  const textCourseInfo = document.createElement('textarea');
-  const btnPublish = document.createElement('button');
-  // Friends
-  const containerFriends = document.createElement('div');
-  // Footer//
-  const footerFeed = document.createElement('footer');
-  const navFeed = document.createElement('navFeed');
-  const homeFeed = document.createElement('img');
-  const searchFeed = document.createElement('img');
-  const circleFeed = document.createElement('div');
-  const postFeed = document.createElement('img');
-  const chatFeed = document.createElement('img');
-  const profileFeed = document.createElement('img');
-
-  // Header
-  headerFeed.classList.add('headerFeed');
-  logoFeed.classList.add('logoFeed');
-  lineFeed.classList.add('lineFeed');
-  // Posts
-  containerPost.classList.add('containerPost');
-  likeFeed.classList.add('likeFeed');
-  likeCounter.classList.add('likeCounter');
-  formFeed.classList.add('formFeed');
-  pictureDiv.classList.add('pictureDiv');
-  profilePic.classList.add('profilePic');
-  inputTitleP.classList.add('inputTitleP');
-  textCourseInfo.classList.add('textCourseInfo');
-  btnPublish.classList.add('btnPublish');
-  // Friends
-  containerFriends.classList.add('containerFriends');
-  footerFeed.classList.add('footerFeed');
-  navFeed.classList.add('navFeed');
-  homeFeed.classList.add('homeFeed');
-  searchFeed.classList.add('searchFeed');
-  circleFeed.classList.add('circleFeed');
-  postFeed.classList.add('postFeed');
-  chatFeed.classList.add('chatFeed');
-  profileFeed.classList.add('profileFeed');
-
-  logoFeed.src = '../components/images/cadenas-learnlink.png';
-  homeFeed.src = '../components/images/hogar.png';
-  searchFeed.src = '../components/images/buscar.png';
-  postFeed.src = '../components/images/mas.png';
-  chatFeed.src = '../components/images/mensajero.png';
-  profileFeed.src = '../components/images/perfil.png';
-  profilePic.src = '../components/images/profile-pic.png';
-  likeFeed.src = '../components/images/corazon.png';
-  likeCounter.textContent = '0';
-  inputTitleP.placeholder = ' What is the title of your course?';
-  textCourseInfo.placeholder = ' Describe your course...';
-  btnPublish.textContent = 'Post';
-
-  likeFeed.setAttribute('type', 'image');
-  likeFeed.setAttribute('id', 'likeFeed');
-  likeFeed.setAttribute('for', 'likeFeed');
-  likeCounter.setAttribute('id', 'likeCounter');
-  likeCounter.setAttribute('for', 'likeCounter');
-  profilePic.setAttribute('id', 'profilePic');
-  profilePic.setAttribute('name', 'profilePic');
-  btnPublish.setAttribute('id', 'btnPublish');
-  btnPublish.setAttribute('for', 'btnPublish');
-
-  inputTitleP.setAttribute('type', 'text');
-  btnPublish.setAttribute('type', 'submit');
-  inputTitleP.setAttribute('name', 'inputTitleP');
-  textCourseInfo.setAttribute('name', 'textCourseInfo');
-
-  likeFeed.addEventListener('click', (event) => {
-    event.preventDefault();
-    function incrementarContador() {
-      contador++;
-      likeCounter.textContent = contador;
-    }
-    function decrementarContador() {
-      contador--;
-      likeCounter.textContent = contador;
-    }
-    // Cambiar la imagen
-    if (likeFeed.src.endsWith('corazon.png')) {
-      likeFeed.src = '../components/images/corazon2.png';
-      incrementarContador();
-    } else {
-      likeFeed.src = '../components/images/corazon.png';
-      decrementarContador();
-    }
-  });
-
-  headerFeed.append(logoFeed);
-
-  containerPost.append(formFeed);
-  pictureDiv.append(profilePic);
-  formFeed.append(pictureDiv, inputTitleP, textCourseInfo, btnPublish, likeFeed, likeCounter);
-
-  footerFeed.append(navFeed);
-  navFeed.append(homeFeed, searchFeed, circleFeed, postFeed, chatFeed, profileFeed);
-
-  // eslint-disable-next-line max-len
-  sectionFeed.append(headerFeed, lineFeed, containerPost, containerFriends, footerFeed);
-
+  const feedSection = `
+    ${ generateHeader() }
+    <hr class="lineFeed">
+    <div class="containerPosts">
+    ${await createUserPosts(user)}
+    </div>
+    ${ createFooter() }
+  `;
+  sectionFeed.innerHTML = feedSection;
+  applySendingLikesOption(sectionFeed);
+  
   return sectionFeed;
 }
 
+function generateHeader(){
+  const headerContainer = `
+    <header class="headerFeed">
+      <img class="logoFeed" src="../components/images/cadenas-learnlink.png">
+    </header>
+  `;
+  return headerContainer;
+}
+
+async function createUserPosts(user) {
+  const userPosts = await getAllPosts(user.uid);
+  let postsContainer = "";
+  if(userPosts !== undefined){
+    userPosts.forEach((post, index) => {
+      postsContainer += `
+      <div class="card">
+        <div class="container-creator">
+          <img src="${post.authorPhotoUrl}" />
+        </div>
+        <div class="card-post">
+          <h1>${post.title}</h1>
+          <p>${post.description}</p>
+        </div>
+        <div class="container-heart">
+          <h3 id="likes-number-${post.id}">${post.likes}</h3>
+          <img id="like-img-${post.id}" data='{"user":"${user.uid}","post":"${post.id}"}' class="like-img" src="../components/images/corazon2.png" />
+        </div>
+      </div>
+      `;
+    });
+  } else {
+    postsContainer = "No hay posts que visualizar";
+  }
+  return postsContainer;
+}
+
+function applySendingLikesOption(sectionFeed){
+  const likeBtns = sectionFeed.querySelectorAll('.like-img');
+  likeBtns.forEach((heart) => {
+    heart.addEventListener("click", () => {
+      const likeData = JSON.parse(heart.getAttribute("data"));
+      const likesContainer = sectionFeed.querySelector(`#likes-number-${likeData.post}`);
+      const likesNumer = parseInt(likesContainer.textContent)+1;
+      updatePostLikes(likeData.post, likesNumer);
+      likesContainer.textContent = likesNumer;
+    });
+  });
+}
+
+function createFooter() {
+  const footerContainer = `
+    <footer class="footerFeed">
+      <navfeed class="navFeed">
+        <img class="homeFeed" src="../components/images/hogar.png">
+        <img class="searchFeed" src="../components/images/buscar.png">
+        <div class="circleFeed"></div>
+        <img class="postFeed" src="../components/images/mas.png">
+        <img class="chatFeed" src="../components/images/mensajero.png">
+        <img class="profileFeed" src="../components/images/perfil.png">
+      </navfeed>
+    </footer>
+  `;
+  return footerContainer;
+}
 export default feed;
