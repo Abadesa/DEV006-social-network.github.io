@@ -92,7 +92,8 @@ async function feed(navigateTo) {
 
   const feedSection = `
     ${generateHeader().outerHTML}
-    <hr class="lineFeed">
+    <div class= "lineFeed"><hr class="lineFeedHr">
+    </div>
     <div class="containerPosts">
     ${await createUserPosts(user)}
     </div>
