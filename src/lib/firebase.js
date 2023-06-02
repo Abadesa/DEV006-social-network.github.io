@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
 // Import the functions you need from the SDKs you need
@@ -6,7 +7,9 @@ import { initializeApp } from 'firebase/app';
 import {
   GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
+import {
+  getFirestore, collection, addDoc, getDocs, doc, updateDoc,
+} from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -90,7 +93,7 @@ export async function getAllPosts() {
 export async function updatePostLikes(postId, likesNumer) {
   try {
     const postRef = doc(db, 'posts', postId);
-    console.log("referencia al post que te gusta");
+    console.log('referencia al post que te gusta');
     console.log(postRef);
     await updateDoc(postRef, { likes: likesNumer });
     console.log('Campo "likes" del post actualizado correctamente');
@@ -99,6 +102,5 @@ export async function updatePostLikes(postId, likesNumer) {
     throw error;
   }
 }
-
 
 export default auth;
