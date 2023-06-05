@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword,
 } from 'firebase/auth';
 import {
-  getFirestore, collection, addDoc, getDocs, doc, updateDoc,
+  getFirestore, collection, addDoc, getDocs, doc, updateDoc, orderBy, query, deleteDoc
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -64,7 +64,6 @@ export async function createUser(user) {
 
 export async function addPostForUser(post) {
   try {
-    console.log(post);
     const postsRef = collection(db, 'posts');
     const newPostRef = await addDoc(postsRef, post);
     console.log('Nuevo post agregado con ID:', newPostRef.id);
@@ -77,7 +76,8 @@ export async function addPostForUser(post) {
 export async function getAllPosts() {
   try {
     const postsRef = collection(db, 'posts');
-    const querySnapshot = await getDocs(postsRef);
+    const querySnapshot = await getDocs(query(postsRef, orderBy('createdAt', 'desc')));
+    console.log(querySnapshot);
     const userPosts = [];
     querySnapshot.forEach((doc) => {
       const postData = doc.data();
@@ -99,6 +99,29 @@ export async function updatePostLikes(postId, likesNumer) {
     console.log('Campo "likes" del post actualizado correctamente');
   } catch (error) {
     console.error('Error al actualizar el campo "likes" del post:', error);
+    throw error;
+  }
+}
+
+export async function updatePost(postData, newPostData) {
+  try {
+    console.log(postData);
+    const postRef = doc(db, 'posts', postData.post);
+    await updateDoc(postRef, { title: newPostData.title, description: newPostData.description });
+    console.log('Post actualizado correctamente');
+  } catch (error) {
+    console.error('Error al actualizar el post:', error);
+    throw error;
+  }
+}
+
+export async function deletePost(postId) {
+  try {
+    const postRef = doc(db, 'posts', postId);
+    await deleteDoc(postRef);
+    console.log('Post eliminado correctamente');
+  } catch (error) {
+    console.error('Error al eliminar el post:', error);
     throw error;
   }
 }

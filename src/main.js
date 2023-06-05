@@ -10,6 +10,7 @@ import confirmation from './components/confirmation.js';
 import interests from './components/interests.js';
 import feed from './components/feed.js';
 import profile from './components/profile.js';
+import post from './components/post.js';
 
 myFunction();
 
@@ -22,6 +23,7 @@ const routes = [
   { path: '/interests', component: interests },
   { path: '/feed', component: feed },
   { path: '/profile', component: profile },
+  { path: '/post', component: post },
 ];
 
 const defaultRoute = '/';
