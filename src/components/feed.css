@@ -57,6 +57,13 @@
     align-items: center;
   }
   
+  .container-admin-btns {
+    flex-basis: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .card-post h1{
     font-size: 18px;
   }
@@ -198,4 +205,3 @@
     margin: 10px;
     background-color: #0087C1;
 }
-

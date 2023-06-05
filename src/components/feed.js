@@ -2,7 +2,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable radix */
 /* eslint-disable max-len */
-import { getAllPosts, updatePostLikes } from '../lib/firebase';
+import { getAllPosts, updatePostLikes, deletePost } from '../lib/firebase';
 
 async function feed(navigateTo) {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -24,17 +24,21 @@ async function feed(navigateTo) {
     if (userPosts !== undefined) {
       userPosts.forEach((post, index) => {
         postsContainer += `
-        <div class="card">
+        <div class="card" id="card-${post.id}">
           <div class="container-creator">
             <img src="${post.authorPhotoUrl}" />
           </div>
           <div class="card-post">
-            <h1>${post.title}</h1>
-            <p>${post.description}</p>
+            <h1 id="title-${post.id}">${post.title}</h1>
+            <p id="description-${post.id}">${post.description}</p>
           </div>
           <div class="container-heart">
             <h3 id="likes-number-${post.id}">${post.likes}</h3>
             <img id="like-img-${post.id}" data='{"user":"${user.uid}","post":"${post.id}"}' class="like-img" src="../components/images/corazon2.png" />
+          </div>
+          <div class="container-admin-btns">
+            <img id="upd-img-${post.id}" data='{"user":"${user.uid}","post":"${post.id}"}' class="upd-img" src="../components/images/editar.png" />
+            <img id="del-img-${post.id}" data='{"user":"${user.uid}","post":"${post.id}"}' class="del-img" src="../components/images/cancelar.png" />
           </div>
         </div>
         `;
@@ -90,6 +94,46 @@ async function feed(navigateTo) {
     });
   }
 
+  async function applyDeletePostOption(sectionFeed) {
+    const delBtns = sectionFeed.querySelectorAll('.del-img');
+    delBtns.forEach((post) => {
+      post.addEventListener('click', async () => {
+        const likeData = JSON.parse(post.getAttribute('data'));
+        await deletePost(likeData.post);
+        const card = sectionFeed.querySelector(`#card-${likeData.post}`);
+        card.remove();
+      });
+    });
+  }
+
+  async function applyCreatePostFunction(sectionFeed) {
+    const postBtn = sectionFeed.querySelector('.postFeed');
+    postBtn.addEventListener('click', async (event) => {
+      event.preventDefault();
+      navigateTo('/post');
+    });
+    
+  }
+
+  async function applyUpdatePostOption(sectionFeed) {
+    const updBtn = sectionFeed.querySelectorAll('.upd-img');
+    console.log(updBtn);
+    updBtn.forEach((post) => {
+      post.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const updateData = JSON.parse(post.getAttribute('data'));
+        const title = sectionFeed.querySelector(`#title-${updateData.post}`).textContent;
+        const description = sectionFeed.querySelector(`#description-${updateData.post}`).textContent;
+        localStorage.setItem ("upd-post", JSON.stringify({
+          title: title,
+          description: description,
+          ...updateData
+        }));
+        navigateTo('/post');
+      });
+    });
+  }
+
   const feedSection = `
     ${generateHeader().outerHTML}
     <div class= "lineFeed"><hr class="lineFeedHr">
@@ -101,6 +145,9 @@ async function feed(navigateTo) {
   `;
   sectionFeed.innerHTML = feedSection;
   applySendingLikesOption(sectionFeed);
+  applyDeletePostOption(sectionFeed);
+  applyUpdatePostOption(sectionFeed);
+  applyCreatePostFunction(sectionFeed);
 
   return sectionFeed;
 }
