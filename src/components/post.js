@@ -19,15 +19,11 @@ function post(navigateTo) {
 
   const postHtml = `
   <div class="container">
-    <div class="success-box hidden" id="success-box">El post se agregó
-satisfactoriamente</div>
+    <div class="success-box hidden" id="success-box">El post se agregó satisfactoriamente</div>
     <div class="post-form">
-      <img class="user-image" src="${user.photoURL
-|| './components/images/perfil.png'}" alt="User Image">
-      <input type="text" class="post-title" placeholder="Título del
-post" value="${updateData !== null ? updateData.title : ''}">
-      <textarea class="post-description" placeholder="Descripción del
-post">${updateData !== null ? updateData.description : ''}</textarea>
+      <img class="user-image" src="${user.photoURL || './components/images/perfil.png'}" alt="User Image">
+      <input type="text" class="post-title" placeholder="Título del post" value="${updateData !== null ? updateData.title : ''}">
+      <textarea class="post-description" placeholder="Descripción del post">${updateData !== null ? updateData.description : ''}</textarea>
       <button class="publish-button">Publicar</button>
     </div>
   </div>

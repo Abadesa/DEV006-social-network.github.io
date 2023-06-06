@@ -133,6 +133,24 @@
     cursor: default;
   }
 
+  .container-heart,
+.container-admin-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.container-admin-btns img {
+  width: 20px;
+  height: 20px;
+  margin: 10px 0;
+}
+
+  .container-heart h3.noLiked{
+    color: #000000 !important;
+  }
+
   .container-creator {
     display: flex;
     justify-content: center;
