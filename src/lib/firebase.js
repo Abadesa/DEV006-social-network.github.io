@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword,
 } from 'firebase/auth';
 import {
-  getFirestore, collection, addDoc, getDocs, doc, updateDoc, orderBy, query, deleteDoc
+  getFirestore, collection, addDoc, getDocs, doc, updateDoc, orderBy, query, deleteDoc, getDoc
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -17,15 +17,14 @@ import {
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCqXnXgZdyzwo0Q9tqHy6zA5yOOLb5c4w8",
-  authDomain: "social-network-sn7.firebaseapp.com",
-  databaseURL: "https://social-network-sn7-default-rtdb.firebaseio.com",
-  projectId: "social-network-sn7",
-  storageBucket: "social-network-sn7.appspot.com",
-  messagingSenderId: "946430069133",
-  appId: "1:946430069133:web:d40924bbf30ac5743f95c4",
-  measurementId: "G-5Z7B8PV9VL"
- 
+  apiKey: "AIzaSyCiAoIgxvdZnD0_w2CFKSL9KtQ2Uz3hUSg",
+  authDomain: "test-social-network-769f1.firebaseapp.com",
+  databaseURL: "https://test-social-network-769f1-default-rtdb.firebaseio.com",
+  projectId: "test-social-network-769f1",
+  storageBucket: "test-social-network-769f1.appspot.com",
+  messagingSenderId: "602607912276",
+  appId: "1:602607912276:web:6b44b262252104d386b4c1",
+  measurementId: "G-Q1609MZRZ0"
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -79,7 +78,6 @@ export async function getAllPosts() {
   try {
     const postsRef = collection(db, 'posts');
     const querySnapshot = await getDocs(query(postsRef, orderBy('createdAt', 'desc')));
-    console.log(querySnapshot);
     const userPosts = [];
     querySnapshot.forEach((doc) => {
       const postData = doc.data();
@@ -92,13 +90,24 @@ export async function getAllPosts() {
   }
 }
 
-export async function updatePostLikes(postId, likesNumer) {
+export async function updatePostLikes(postId, likesData) {
   try {
+    console.log(postId);
     const postRef = doc(db, 'posts', postId);
-    console.log('referencia al post que te gusta');
-    console.log(postRef);
-    await updateDoc(postRef, { likes: likesNumer });
-    console.log('Campo "likes" del post actualizado correctamente');
+    console.log(postRef)
+    const postDoc = await getDoc(postRef);
+console.log("post");
+    console.log(postDoc);
+
+    if (postDoc.exists()) {
+      const postData = postDoc.data();
+      const currentLikes = postData.likes || [];
+      const updatedLikes = [...currentLikes, likesData];
+      await updateDoc(postRef, { likes: updatedLikes });
+      console.log('Campo "likes" del post actualizado correctamente');
+    } else {
+      throw new Error('El documento del post no existe');
+    }
   } catch (error) {
     console.error('Error al actualizar el campo "likes" del post:', error);
     throw error;

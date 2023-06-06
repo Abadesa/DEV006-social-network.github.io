@@ -37,6 +37,7 @@ function login(navigateTo) {
   buttonLogin.classList.add('buttonLogIn');
   buttonLogin.addEventListener('click', (event) => {
     event.preventDefault();
+    localStorage.removeItem("user");
     const email = inputEmail.value;
     const password = inputPass.value;
     let warnings = '';
@@ -59,7 +60,7 @@ function login(navigateTo) {
     console.log('funciona');
     const promesa = logInWithEmail(email, password);
     promesa.then((userCredential) => {
-      console.log(userCredential, 'promesa resueltaaaa');
+      localStorage.setItem("user", JSON.stringify(userCredential.user));
       navigateTo('/feed');
     }).catch((error) => {
       console.log(error, 'esta maaaaal');
@@ -73,11 +74,12 @@ function login(navigateTo) {
   googleLogoLogIn.classList.add('googleicon');
   googleLogIn.classList.add('googleLogIn');
   googleLogIn.addEventListener('click', async () => {
+    localStorage.removeItem("user");
     const user = await logInGoogle()
       .then((user1) => {
         return user1;
       });
-    localStorage.setItem ("user", JSON.stringify(user.user));
+    localStorage.setItem("user", JSON.stringify(user.user));
     navigateTo('/feed');
   });
   warningsLogIn.classList.add('warningsLogIn');

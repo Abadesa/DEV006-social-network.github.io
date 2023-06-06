@@ -2,7 +2,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     height: 100vh;
+  }
+
+  .success-box {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .success-box.hidden{
+    display: none;
   }
   
   .post-form {
