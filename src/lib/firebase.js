@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword,
 } from 'firebase/auth';
 import {
-  getFirestore, collection, addDoc, getDocs, doc, updateDoc, orderBy, query, deleteDoc
+  getFirestore, collection, addDoc, getDocs, doc, updateDoc, orderBy, query, deleteDoc,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -17,15 +17,15 @@ import {
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCqXnXgZdyzwo0Q9tqHy6zA5yOOLb5c4w8",
-  authDomain: "social-network-sn7.firebaseapp.com",
-  databaseURL: "https://social-network-sn7-default-rtdb.firebaseio.com",
-  projectId: "social-network-sn7",
-  storageBucket: "social-network-sn7.appspot.com",
-  messagingSenderId: "946430069133",
-  appId: "1:946430069133:web:d40924bbf30ac5743f95c4",
-  measurementId: "G-5Z7B8PV9VL"
- 
+  apiKey: 'AIzaSyCqXnXgZdyzwo0Q9tqHy6zA5yOOLb5c4w8',
+  authDomain: 'social-network-sn7.firebaseapp.com',
+  databaseURL: 'https://social-network-sn7-default-rtdb.firebaseio.com',
+  projectId: 'social-network-sn7',
+  storageBucket: 'social-network-sn7.appspot.com',
+  messagingSenderId: '946430069133',
+  appId: '1:946430069133:web:d40924bbf30ac5743f95c4',
+  measurementId: 'G-5Z7B8PV9VL',
+
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

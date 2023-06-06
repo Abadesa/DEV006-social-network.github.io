@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 /* eslint-disable radix */
@@ -112,7 +113,6 @@ async function feed(navigateTo) {
       event.preventDefault();
       navigateTo('/post');
     });
-    
   }
 
   async function applyUpdatePostOption(sectionFeed) {
@@ -124,10 +124,10 @@ async function feed(navigateTo) {
         const updateData = JSON.parse(post.getAttribute('data'));
         const title = sectionFeed.querySelector(`#title-${updateData.post}`).textContent;
         const description = sectionFeed.querySelector(`#description-${updateData.post}`).textContent;
-        localStorage.setItem ("upd-post", JSON.stringify({
-          title: title,
-          description: description,
-          ...updateData
+        localStorage.setItem('upd-post', JSON.stringify({
+          title,
+          description,
+          ...updateData,
         }));
         navigateTo('/post');
       });

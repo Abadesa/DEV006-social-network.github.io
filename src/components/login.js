@@ -74,10 +74,8 @@ function login(navigateTo) {
   googleLogIn.classList.add('googleLogIn');
   googleLogIn.addEventListener('click', async () => {
     const user = await logInGoogle()
-      .then((user1) => {
-        return user1;
-      });
-    localStorage.setItem ("user", JSON.stringify(user.user));
+      .then((user1) => user1);
+    localStorage.setItem('user', JSON.stringify(user.user));
     navigateTo('/feed');
   });
   warningsLogIn.classList.add('warningsLogIn');
